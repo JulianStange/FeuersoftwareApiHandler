@@ -10,7 +10,7 @@ namespace FeuersoftwareApiHandler.Models
         /// <summary>
         /// Der Status des Fahrzeuges
         /// </summary>
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         /// <summary>
         /// Dies Position des Fahrzeuges
