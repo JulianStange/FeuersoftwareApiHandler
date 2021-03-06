@@ -302,5 +302,25 @@
             await client.SendAsync(request);
 
         }
+
+        /// <summary>
+        /// Gibt eine Liste von Benutzern
+        /// </summary>
+        /// <returns>Benutzer</returns>
+        public async Task<IEnumerable<User>> GetUser()
+        {
+            IEnumerable<User> user = new List<User>();
+            HttpResponseMessage response = await client.GetAsync("interfaces/public/user");
+            if (response.IsSuccessStatusCode)
+            {
+                user = await response.Content.ReadAsAsync<List<User>>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
+
+            return user;
+        }
     }
 }
