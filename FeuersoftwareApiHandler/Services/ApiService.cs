@@ -16,7 +16,7 @@
         /// <summary>
         /// Der HTTP-Client zum Senden von Calls gegen den Server
         /// </summary>
-        private static readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client = new HttpClient();
 
         /// <summary>
         /// Das Bearer-Token zur Authentifikation an der Schnittstelle
@@ -36,6 +36,22 @@
         public ApiService(string baseAddress, string apiToken)
         {
             this.BaseAddress = baseAddress;
+            this.ApiToken = apiToken;
+
+            client.BaseAddress = new Uri(this.BaseAddress);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", this.ApiToken);
+        }
+
+        /// <summary>
+        /// Konstruktor zum Initialisieren der Serviceklasse mit basis Adresse https://connectapi.feuersoftware.com.
+        /// </summary>
+        /// <param name="apiToken">Das Bearer-Token zur Authentifikation an der Schnittstelle</param>
+        public ApiService(string apiToken)
+        {
+            this.BaseAddress = "https://connectapi.feuersoftware.com";
             this.ApiToken = apiToken;
 
             client.BaseAddress = new Uri(this.BaseAddress);
