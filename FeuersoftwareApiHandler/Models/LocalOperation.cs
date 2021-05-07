@@ -29,6 +29,19 @@
         }
 
         /// <summary>
+        /// Der Konstruktor für einen lokal erstellten Einsatz. 
+        /// </summary>
+        public LocalOperation()
+        {
+            this.Id = 0;
+            this.Start = DateTimeOffset.Now;
+            this.Status = OperationStatus.New;
+            this.Properties = new List<OperationProperty>();
+            this.AlarmedVehicles = new List<Vehicle>();
+        }
+
+
+        /// <summary>
         /// Die ID des Einsatzes in Connect
         /// </summary>
         public int Id { get; set; }
