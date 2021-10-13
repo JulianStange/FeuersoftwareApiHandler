@@ -20,11 +20,11 @@ namespace FeuersoftwareApiHandler.Models
         /// <summary>
         /// Der Timestamp des Status
         /// </summary>
-        public DateTime StatusTimestamp { get; set; }
+        public DateTime? StatusTimestamp { get; set; }
 
         /// <summary>
         /// Der Timestamp der Position
         /// </summary>
-        public DateTime PositionTimestamp { get; set; }
+        public DateTime? PositionTimestamp { get; set; }
     }
 }

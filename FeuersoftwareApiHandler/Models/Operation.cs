@@ -66,6 +66,6 @@
         /// <summary>
         /// Die alarmierten Fahrzeuge
         /// </summary>
-        public List<Vehicle> AlarmedVehicles { get; set; }
+        public List<AlarmedVehicle> AlarmedVehicles { get; set; }
     }
 }
