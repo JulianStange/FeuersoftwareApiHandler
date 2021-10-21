@@ -338,5 +338,21 @@
 
             return user;
         }
+
+        public async Task<IEnumerable<Vehicle>> GetVehicles()
+        {
+            IEnumerable<Vehicle> vehicles = new List<Vehicle>();
+            HttpResponseMessage response = await client.GetAsync("interfaces/public/vehicle");
+            if (response.IsSuccessStatusCode)
+            {
+                vehicles = await response.Content.ReadAsAsync<List<Vehicle>>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
+
+            return vehicles;
+        }
     }
 }

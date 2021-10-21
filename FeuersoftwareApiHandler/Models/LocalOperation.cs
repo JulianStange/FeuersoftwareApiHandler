@@ -25,7 +25,7 @@
             this.Address = address;
             this.Start = DateTimeOffset.Now;
             this.Properties = new List<OperationProperty>();
-            this.AlarmedVehicles = new List<Vehicle>();
+            this.AlarmedVehicles = new List<AlarmedVehicle>();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@
             this.Start = DateTimeOffset.Now;
             this.Status = OperationStatus.New;
             this.Properties = new List<OperationProperty>();
-            this.AlarmedVehicles = new List<Vehicle>();
+            this.AlarmedVehicles = new List<AlarmedVehicle>();
         }
 
 
@@ -99,7 +99,7 @@
         /// <summary>
         /// Die alarmierten Fahrzeuge
         /// </summary>
-        public List<Vehicle> AlarmedVehicles { get; set; }
+        public List<AlarmedVehicle> AlarmedVehicles { get; set; }
 
         /// <summary>
         /// Die Positionsdaten
