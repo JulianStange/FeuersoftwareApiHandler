@@ -26,7 +26,7 @@ namespace FeuersoftwareApiHandler.Models
             this.Groups = new List<string>();
             this.MailingLists = new List<string>();
             this.CreatedBy = "ApiUser";
-            this.Site = "API";
+            this.SendNotificationsImmediately = true;
         }
 
         /// <summary>
@@ -67,11 +67,13 @@ namespace FeuersoftwareApiHandler.Models
         /// <summary>
         /// Der Standort, zu dem die Nachricht gehört
         /// </summary>
-        public string Site { get; set; }
+        public string? Site { get; set; }
 
         /// <summary>
         /// Die Mailverteiler, an die die Nachricht zusätzlich versendet werden soll
         /// </summary>
         public IEnumerable<string> MailingLists { get; set; }
+
+        public bool SendNotificationsImmediately { get; set; }
     }
 }

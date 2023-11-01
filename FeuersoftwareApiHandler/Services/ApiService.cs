@@ -116,12 +116,12 @@
                 throw new ArgumentNullException(nameof(news));
             }
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news")
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news?newsType=organizationNews")
             {
                 Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(news), Encoding.UTF8, "application/json")
             };
 
-            await client.SendAsync(request);
+            var res = await client.SendAsync(request);
         }
 
         /// <summary>
