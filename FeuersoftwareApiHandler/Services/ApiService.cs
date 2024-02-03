@@ -109,14 +109,14 @@
         /// </summary>
         /// <param name="news">Die News als <see cref="News"/></param>
         /// <returns>Nichts</returns>
-        public async Task PostNews(News news)
+        public async Task PostNews(News news, bool orgaNews = false)
         {
             if (news == null)
             {
                 throw new ArgumentNullException(nameof(news));
             }
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news?newsType=organizationNews")
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news"+(orgaNews ? "newsType = organizationNews" : ""))
             {
                 Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(news), Encoding.UTF8, "application/json")
             };
