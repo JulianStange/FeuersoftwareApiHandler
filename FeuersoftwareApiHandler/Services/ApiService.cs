@@ -116,7 +116,7 @@
                 throw new ArgumentNullException(nameof(news));
             }
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news"+(orgaNews ? "newsType = organizationNews" : ""))
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/news"+(orgaNews ? "newsType=1" : ""))
             {
                 Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(news), Encoding.UTF8, "application/json")
             };
