@@ -239,6 +239,21 @@
         }
 
         /// <summary>
+        /// Sendet eine Mängelmeldung
+        /// </summary>
+        /// <param name="defectReport">Den Fahrzeugstatus <see cref="CreateDefectReport"/></param>
+        /// <returns>Nichts</returns>
+        public async Task PostDefectReport(CreateDefectReport defectReport)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "interfaces/public/defectReport")
+            {
+                Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(defectReport), Encoding.UTF8, "application/json")
+            };
+
+            await client.SendAsync(request);
+        }
+
+        /// <summary>
         /// Gibt den Fahrzeug Status einer bestimmten Id
         /// </summary>
         /// <param name="id">Die Connect Id des Fahrzeuges</param>
