@@ -352,5 +352,43 @@
 
             return vehicles;
         }
+
+        public async Task<IEnumerable<OperationVehicleAssigment>> GetOperationAssigments(int operationId)
+        {
+            IEnumerable<OperationVehicleAssigment> vehicles = new List<OperationVehicleAssigment>();
+            HttpResponseMessage response = await client.GetAsync("interfaces/public/operation/"+operationId+"/assignment");
+            if (response.IsSuccessStatusCode)
+            {
+                vehicles = await response.Content.ReadAsAsync<List<OperationVehicleAssigment>>();
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
+
+            return vehicles;
+        }
+
+        /// <summary>
+        /// Aktualisiert die Benutzer Verfügbarkeit
+        /// </summary>
+        /// <param name="id">Die Benutzer Id oder radioId</param>
+        /// <param name="userAvailability">Die Benutzer Verfügbarkeit</param>
+        /// <returns>Nichts</returns>
+        public async Task CreateOrUpdateVehicleAssignment(int operationId, CreateOrUpdateOperationVehicleAssigment vehicleAssigment)
+        {
+            if (vehicleAssigment == null)
+            {
+                throw new ArgumentNullException(nameof(vehicleAssigment));
+            }
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, "interfaces/public/operation/" + operationId + "/assignment")
+            {
+                Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(vehicleAssigment), Encoding.UTF8, "application/json")
+            };
+            System.Text.Json.JsonSerializer.Serialize(vehicleAssigment);
+            await client.SendAsync(request);
+
+        }
     }
 }
